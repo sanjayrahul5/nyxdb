@@ -9,7 +9,7 @@ use std::collections::HashMap;
 use std::str::FromStr;
 
 /// Defines how the data will be stored cached in-memory by Nyx DB
-pub struct CacheTable {
+pub struct Table {
     /// Name of the table
     pub name: String,
     /// Schema of the table
@@ -18,9 +18,9 @@ pub struct CacheTable {
     pub columns: HashMap<String, Vec<DataType>>,
 }
 
-impl CacheTable {
-    pub fn new() -> CacheTable {
-        CacheTable {
+impl Table {
+    pub fn new() -> Table {
+        Table {
             name: String::new(),
             schema: HashMap::<String, DataType>::new(),
             columns: HashMap::<String, Vec<DataType>>::new(),
@@ -32,7 +32,7 @@ impl CacheTable {
         table_name: String,
         select_columns: Vec<String>,
         file_format: String,
-    ) -> Result<CacheTable, TableError> {
+    ) -> Result<Table, TableError> {
         let format = FileFormat::from_str(file_format.as_str())
             .map_err(|e| TableError::UnsupportedFileFormat(file_format))?;
 
@@ -54,7 +54,7 @@ impl CacheTable {
             }
         })?;
 
-        let table = CacheTable {
+        let table = Table {
             name: table_name,
             schema,
             columns,

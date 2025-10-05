@@ -1,4 +1,4 @@
-pub mod cache_table;
+mod table;
 
 mod datatype;
 
@@ -11,3 +11,7 @@ mod errors;
 pub mod logger;
 
 mod config;
+
+pub mod virtual_machine;
+
+pub mod command;

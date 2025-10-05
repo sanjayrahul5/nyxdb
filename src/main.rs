@@ -1,21 +1,24 @@
 use log::{error, info};
-use nyxdb::database::core::cache_table::CacheTable;
+use nyxdb::database::core::command::{Command, CommandResult, SelectSemantics};
 use nyxdb::database::core::logger::logger_init;
+use nyxdb::database::core::virtual_machine::VirtualMachine;
 
+/// Testing purpose - to be removed
 fn main() {
     logger_init();
 
-    let table_name = "sales_receipts".to_string();
-    let select_columns = vec!["balance".to_string()];
-    let file_format = "parquet".to_string();
+    let select_sample = SelectSemantics {
+        table: "sales_receipts".to_string(),
+        columns: vec!["balances".to_string()],
+    };
 
-    let result = CacheTable::new().load(table_name, select_columns, file_format);
+    let cmd = vec![Command::Select(select_sample)];
+
+    let vm = VirtualMachine::new();
+    let result = vm.execute(cmd);
+
     match result {
-        Ok(_) => {
-            info!("success")
-        }
-        Err(e) => {
-            error!("{}", e)
-        }
+        CommandResult::SelectSuccess(table) => info!("Select success!!!"),
+        CommandResult::Error(e) => error!("Select failed: {}", e),
     }
 }
