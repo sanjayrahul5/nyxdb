@@ -1,0 +1,9 @@
+/target
+
+Cargo.lock
+
+# Nyx DB storage path
+.nyxdb
+
+.idea
+
