@@ -1,5 +1,5 @@
 use crate::database::core::command::{Command, CommandResult};
-use crate::database::core::config::DEFAULT_FILE_FORMAT;
+use crate::database::core::config::DEFAULT_STORAGE_FORMAT;
 use crate::database::core::table::Table;
 
 pub struct VirtualMachine;
@@ -14,8 +14,11 @@ impl VirtualMachine {
         for command in commands {
             match command {
                 Command::Select(sel) => {
-                    let result =
-                        Table::new().load(sel.table, sel.columns, DEFAULT_FILE_FORMAT.to_string());
+                    let result = Table::new().load(
+                        sel.table,
+                        sel.columns,
+                        DEFAULT_STORAGE_FORMAT.to_string(),
+                    );
 
                     match result {
                         Ok(table) => return CommandResult::SelectSuccess(table),
