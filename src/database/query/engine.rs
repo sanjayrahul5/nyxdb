@@ -1,12 +1,12 @@
-use crate::database::core::command::{Command, CommandResult};
-use crate::database::core::config::DEFAULT_STORAGE_FORMAT;
+use crate::database::config::DEFAULT_STORAGE_FORMAT;
 use crate::database::core::table::Table;
+use crate::database::query::command::{Command, CommandResult};
 
-pub struct VirtualMachine;
+pub struct QueryEngine;
 
-impl VirtualMachine {
+impl QueryEngine {
     pub fn new() -> Self {
-        VirtualMachine
+        QueryEngine
     }
 
     /// Main entry point, executes a list of command in order

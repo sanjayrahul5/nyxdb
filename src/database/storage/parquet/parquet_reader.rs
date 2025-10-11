@@ -1,6 +1,6 @@
 use crate::database::core::datatype::DataType;
-use crate::database::core::errors::FileReadError;
-use crate::database::core::file_io::reader::TableReader;
+use crate::database::error::FileReadError;
+use crate::database::storage::reader::TableReader;
 use polars::prelude::*;
 use std::collections::HashMap;
 use std::path::Path;

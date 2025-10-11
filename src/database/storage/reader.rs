@@ -1,5 +1,5 @@
 use crate::database::core::datatype::DataType;
-use crate::database::core::errors::FileReadError;
+use crate::database::error::FileReadError;
 use std::collections::HashMap;
 
 /// Public interface of table reader

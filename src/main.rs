@@ -1,7 +1,7 @@
 use log::{error, info};
-use nyxdb::database::core::command::{Command, CommandResult, SelectSemantics};
-use nyxdb::database::core::logger::logger_init;
-use nyxdb::database::core::virtual_machine::VirtualMachine;
+use nyxdb::database::query::command::{Command, CommandResult, SelectSemantics};
+use nyxdb::database::query::engine::QueryEngine;
+use nyxdb::database::utils::logger::logger_init;
 
 /// Testing purpose - to be removed
 fn main() {
@@ -9,12 +9,12 @@ fn main() {
 
     let select_sample = SelectSemantics {
         table: "sales_receipts".to_string(),
-        columns: vec!["balances".to_string()],
+        columns: vec!["balance".to_string()],
     };
 
     let cmd = vec![Command::Select(select_sample)];
 
-    let vm = VirtualMachine::new();
+    let vm = QueryEngine::new();
     let result = vm.execute(cmd);
 
     match result {

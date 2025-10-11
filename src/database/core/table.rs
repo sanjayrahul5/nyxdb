@@ -1,9 +1,9 @@
-use crate::database::core::config::DATA_DIR;
+use crate::database::config::DATA_DIR;
 use crate::database::core::datatype::DataType;
-use crate::database::core::errors::{FileReadError, TableError};
-use crate::database::core::file_format::FileFormat;
-use crate::database::core::file_io::parquet::parquet_reader::ParquetReader;
-use crate::database::core::file_io::reader::TableReader;
+use crate::database::error::{FileReadError, TableError};
+use crate::database::storage::file_format::FileFormat;
+use crate::database::storage::parquet::parquet_reader::ParquetReader;
+use crate::database::storage::reader::TableReader;
 use log::{error, info};
 use std::collections::HashMap;
 use std::str::FromStr;
